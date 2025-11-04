@@ -9,28 +9,23 @@
     box-sizing: border-box;
 }
 
-/* Variables CSS para los colores de la paleta TALENTO TECH
-   Basados en la paleta púrpura moderna de la imagen */
+/* Variables CSS para los colores de la paleta (basados en la imagen de Talento Tech) */
 :root {
-    /* Fondo oscuro principal (azul/púrpura muy oscuro) */
+    /* Fondo oscuro principal (muy oscuro azul/púrpura) */
     --color-fondo: #1A1A2E;
-    /* Fondo alternativo más oscuro */
-    --color-fondo-alt: #0F0F1E;
-    /* Púrpura vibrante para botones y acentos */
-    --color-primario: #A020F0;
-    /* Púrpura medio para elementos secundarios */
-    --color-secundario: #8A2BE2;
-    /* Púrpura claro/pink para gradientes y títulos */
-    --color-acento: #DDA0DD;
-    /* Púrpura muy claro para efectos sutiles */
-    --color-acento-light: #EE82EE;
-    /* Blanco para texto principal */
+    /* Púrpura vibrante para acentos y botones */
+    --color-primario: #9370DB;
+    --color-primario-hover: #8A2BE2;
+    /* Púrpura claro/rosa para elementos secundarios */
+    --color-secundario: #DDA0DD;
+    --color-secundario-hover: #EE82EE;
+    /* Texto principal */
     --color-texto: #FFFFFF;
-    /* Gris claro para texto secundario */
+    /* Texto secundario */
     --color-texto-secundario: #E0E0E0;
-    /* Sombra con tono púrpura */
-    --color-sombra: rgba(160, 32, 240, 0.2);
-    --color-sombra-dark: rgba(10, 10, 30, 0.5);
+    /* Sombras */
+    --color-sombra: rgba(0, 0, 0, 0.3);
+    --color-sombra-hover: rgba(147, 112, 219, 0.4);
 }
 
 /* Estilos base del body */
@@ -54,14 +49,13 @@ body {
    ======================================== */
 
 .navbar {
-    /* Fondo semi-transparente con efecto blur */
     background-color: rgba(26, 26, 46, 0.95);
     backdrop-filter: blur(10px);
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 15px var(--color-sombra-dark);
+    box-shadow: 0 2px 10px var(--color-sombra);
     transition: all 0.3s ease;
 }
 
@@ -74,17 +68,41 @@ body {
     align-items: center;
 }
 
+/* Estilos del logo de Talento Tech */
 .nav-logo {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.logo-talent {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-texto);
+    line-height: 1;
+}
+
+.logo-tech {
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--color-acento);
-    text-decoration: none;
-    transition: transform 0.3s ease, color 0.3s ease;
+    color: var(--color-texto);
+    line-height: 1;
+}
+
+.logo-oriente {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-texto);
+    background-color: var(--color-primario);
+    padding: 2px 8px;
+    border-radius: 4px;
+    line-height: 1.2;
+    margin-top: 2px;
 }
 
 .nav-logo:hover {
-    transform: scale(1.1);
-    color: var(--color-primario);
+    transform: scale(1.05);
 }
 
 .nav-menu {
@@ -101,7 +119,6 @@ body {
     position: relative;
 }
 
-/* Línea decorativa que aparece al hacer hover */
 .nav-link::after {
     content: '';
     position: absolute;
@@ -109,12 +126,12 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--color-primario), var(--color-acento));
+    background-color: var(--color-primario);
     transition: width 0.3s ease;
 }
 
 .nav-link:hover {
-    color: var(--color-acento);
+    color: var(--color-secundario);
 }
 
 .nav-link:hover::after {
@@ -131,33 +148,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Gradiente púrpura oscuro a más claro */
-    background: linear-gradient(135deg, var(--color-fondo) 0%, #2D1B3D 50%, var(--color-fondo) 100%);
+    background: linear-gradient(135deg, var(--color-fondo) 0%, #16213E 50%, var(--color-fondo) 100%);
     position: relative;
     overflow: hidden;
 }
 
-/* Efecto de fondo animado con círculos púrpura */
+/* Efecto de fondo con gradiente */
 .hero::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(160, 32, 240, 0.1) 0%, transparent 70%);
-    animation: pulse 15s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 0.5;
-    }
-    50% {
-        transform: scale(1.2);
-        opacity: 0.8;
-    }
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(147, 112, 219, 0.1) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .hero-container {
@@ -174,47 +179,22 @@ body {
     margin: 0 auto;
 }
 
-/* Contenedor de la imagen de perfil */
-.profile-image-container {
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: center;
-}
-
-.profile-image {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    object-fit: cover;
-    /* Borde con gradiente púrpura */
-    border: 5px solid transparent;
-    background: linear-gradient(var(--color-fondo), var(--color-fondo)) padding-box,
-                linear-gradient(135deg, var(--color-primario), var(--color-acento)) border-box;
-    box-shadow: 0 10px 40px var(--color-sombra);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.profile-image:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 50px rgba(160, 32, 240, 0.5);
-}
-
 /* Título principal */
 .hero-title {
     font-size: 3rem;
     font-weight: 700;
-    /* Gradiente de texto púrpura */
-    background: linear-gradient(135deg, var(--color-acento), var(--color-primario));
+    color: var(--color-texto);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    background: linear-gradient(135deg, var(--color-texto) 0%, var(--color-secundario) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 1rem;
-    line-height: 1.2;
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
-    color: var(--color-acento);
+    font-size: 1.8rem;
+    color: var(--color-secundario);
     margin-bottom: 1.5rem;
     font-weight: 600;
 }
@@ -222,7 +202,7 @@ body {
 .hero-description {
     font-size: 1.1rem;
     color: var(--color-texto-secundario);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     line-height: 1.8;
 }
 
@@ -233,31 +213,29 @@ body {
 .btn-primary {
     display: inline-block;
     padding: 15px 40px;
-    /* Gradiente púrpura vibrante */
-    background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+    background-color: var(--color-primario);
     color: var(--color-texto);
     text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 20px var(--color-sombra);
+    box-shadow: 0 4px 15px var(--color-sombra-hover);
     border: none;
     cursor: pointer;
     font-size: 1rem;
 }
 
 .btn-primary:hover {
-    /* Gradiente invertido al hacer hover */
-    background: linear-gradient(135deg, var(--color-secundario), var(--color-primario));
+    background-color: var(--color-primario-hover);
     transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(160, 32, 240, 0.6);
+    box-shadow: 0 6px 20px var(--color-sombra-hover);
 }
 
 .btn-secondary {
     display: inline-block;
     padding: 10px 25px;
     background-color: transparent;
-    color: var(--color-acento);
+    color: var(--color-primario);
     text-decoration: none;
     border: 2px solid var(--color-primario);
     border-radius: 50px;
@@ -266,10 +244,10 @@ body {
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+    background-color: var(--color-primario);
     color: var(--color-texto);
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px var(--color-sombra);
+    box-shadow: 0 4px 15px var(--color-sombra-hover);
 }
 
 /* ========================================
@@ -280,11 +258,7 @@ body {
     font-size: 2.5rem;
     font-weight: 700;
     text-align: center;
-    /* Gradiente púrpura para títulos */
-    background: linear-gradient(135deg, var(--color-acento), var(--color-primario));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-texto);
     margin-bottom: 3rem;
     position: relative;
     padding-bottom: 1rem;
@@ -298,67 +272,8 @@ body {
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    /* Gradiente púrpura para la línea decorativa */
-    background: linear-gradient(90deg, var(--color-primario), var(--color-acento));
+    background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
     border-radius: 2px;
-}
-
-/* ========================================
-   SECCIÓN EXPERIENCIA
-   ======================================== */
-
-.experience {
-    padding: 80px 20px;
-    background-color: var(--color-fondo-alt);
-}
-
-.experience-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.experience-card {
-    background: linear-gradient(135deg, rgba(160, 32, 240, 0.1), rgba(138, 43, 226, 0.05));
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 25px var(--color-sombra-dark);
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    backdrop-filter: blur(10px);
-}
-
-.experience-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(160, 32, 240, 0.3);
-    border-color: var(--color-primario);
-    background: linear-gradient(135deg, rgba(160, 32, 240, 0.2), rgba(138, 43, 226, 0.1));
-}
-
-.experience-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    filter: drop-shadow(0 0 10px var(--color-primario));
-}
-
-.experience-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--color-acento);
-    margin-bottom: 0.5rem;
-}
-
-.experience-period {
-    color: var(--color-primario);
-    font-weight: 500;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-}
-
-.experience-description {
-    color: var(--color-texto-secundario);
-    line-height: 1.6;
 }
 
 /* ========================================
@@ -367,7 +282,7 @@ body {
 
 .skills {
     padding: 80px 20px;
-    background: linear-gradient(135deg, var(--color-fondo) 0%, #2D1B3D 100%);
+    background: linear-gradient(135deg, var(--color-fondo) 0%, #16213E 100%);
 }
 
 .skills-grid {
@@ -377,57 +292,41 @@ body {
     margin-top: 2rem;
 }
 
-.skill-item {
-    background: linear-gradient(135deg, rgba(160, 32, 240, 0.1), rgba(138, 43, 226, 0.05));
-    padding: 1.5rem;
+/* Tarjeta de habilidad */
+.skill-card {
+    background: linear-gradient(135deg, rgba(147, 112, 219, 0.1) 0%, rgba(221, 160, 221, 0.05) 100%);
+    padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 5px 25px var(--color-sombra-dark);
-    transition: transform 0.3s ease;
+    box-shadow: 0 5px 20px var(--color-sombra);
+    transition: all 0.3s ease;
     border: 2px solid transparent;
-    backdrop-filter: blur(10px);
+    text-align: center;
 }
 
-.skill-item:hover {
-    transform: translateY(-5px);
+.skill-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px var(--color-sombra-hover);
     border-color: var(--color-primario);
+    background: linear-gradient(135deg, rgba(147, 112, 219, 0.2) 0%, rgba(221, 160, 221, 0.1) 100%);
+}
+
+.skill-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    display: block;
 }
 
 .skill-name {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 600;
-    color: var(--color-acento);
-    margin-bottom: 0.75rem;
+    color: var(--color-texto);
+    margin-bottom: 1rem;
 }
 
-.skill-bar {
-    width: 100%;
-    height: 10px;
-    background-color: rgba(160, 32, 240, 0.2);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 0.5rem;
-}
-
-.skill-progress {
-    height: 100%;
-    /* Gradiente púrpura para la barra de progreso */
-    background: linear-gradient(90deg, var(--color-primario), var(--color-acento));
-    border-radius: 10px;
-    transition: width 1s ease;
-    animation: fillBar 1.5s ease forwards;
-    box-shadow: 0 0 10px var(--color-primario);
-}
-
-@keyframes fillBar {
-    from {
-        width: 0%;
-    }
-}
-
-.skill-percentage {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--color-primario);
+.skill-description {
+    color: var(--color-texto-secundario);
+    line-height: 1.6;
+    font-size: 0.95rem;
 }
 
 /* ========================================
@@ -436,29 +335,28 @@ body {
 
 .projects {
     padding: 80px 20px;
-    background-color: var(--color-fondo-alt);
+    background-color: var(--color-fondo);
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
 
 .project-card {
-    background: linear-gradient(135deg, rgba(160, 32, 240, 0.1), rgba(138, 43, 226, 0.05));
+    background: linear-gradient(135deg, rgba(147, 112, 219, 0.1) 0%, rgba(221, 160, 221, 0.05) 100%);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 25px var(--color-sombra-dark);
+    box-shadow: 0 5px 20px var(--color-sombra);
     transition: all 0.3s ease;
     border: 2px solid transparent;
-    backdrop-filter: blur(10px);
 }
 
 .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(160, 32, 240, 0.4);
+    box-shadow: 0 10px 30px var(--color-sombra-hover);
     border-color: var(--color-primario);
 }
 
@@ -467,6 +365,7 @@ body {
     height: 200px;
     object-fit: cover;
     transition: transform 0.3s ease;
+    display: block;
 }
 
 .project-card:hover .project-image {
@@ -480,7 +379,7 @@ body {
 .project-title {
     font-size: 1.2rem;
     font-weight: 600;
-    color: var(--color-acento);
+    color: var(--color-texto);
     margin-bottom: 0.75rem;
 }
 
@@ -497,7 +396,7 @@ body {
 
 .contact {
     padding: 80px 20px;
-    background: linear-gradient(135deg, var(--color-fondo) 0%, #2D1B3D 100%);
+    background: linear-gradient(135deg, var(--color-fondo) 0%, #16213E 100%);
 }
 
 .contact-wrapper {
@@ -508,12 +407,24 @@ body {
 }
 
 .contact-form-container {
-    background: linear-gradient(135deg, rgba(160, 32, 240, 0.1), rgba(138, 43, 226, 0.05));
+    background: linear-gradient(135deg, rgba(147, 112, 219, 0.15) 0%, rgba(221, 160, 221, 0.1) 100%);
     padding: 2.5rem;
     border-radius: 15px;
-    box-shadow: 0 5px 25px var(--color-sombra-dark);
-    border: 2px solid rgba(160, 32, 240, 0.2);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px var(--color-sombra);
+    border: 2px solid rgba(147, 112, 219, 0.3);
+}
+
+.form-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-texto);
+    margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+    color: var(--color-texto-secundario);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
 }
 
 .contact-form {
@@ -530,27 +441,27 @@ body {
 
 .form-label {
     font-weight: 600;
-    color: var(--color-acento);
+    color: var(--color-texto);
     font-size: 0.95rem;
 }
 
 .form-input,
 .form-textarea {
     padding: 12px 15px;
-    border: 2px solid rgba(160, 32, 240, 0.3);
+    border: 2px solid rgba(147, 112, 219, 0.3);
     border-radius: 8px;
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     transition: all 0.3s ease;
-    background-color: rgba(26, 26, 46, 0.5);
     color: var(--color-texto);
+    background-color: rgba(26, 26, 46, 0.5);
 }
 
 .form-input:focus,
 .form-textarea:focus {
     outline: none;
     border-color: var(--color-primario);
-    box-shadow: 0 0 0 3px rgba(160, 32, 240, 0.2);
+    box-shadow: 0 0 0 3px rgba(147, 112, 219, 0.2);
     background-color: rgba(26, 26, 46, 0.7);
 }
 
@@ -570,17 +481,17 @@ body {
 }
 
 .social-links-container {
-    background: linear-gradient(135deg, rgba(160, 32, 240, 0.2), rgba(138, 43, 226, 0.1));
+    background: linear-gradient(135deg, rgba(147, 112, 219, 0.15) 0%, rgba(221, 160, 221, 0.1) 100%);
     padding: 2.5rem;
     border-radius: 15px;
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(160, 32, 240, 0.3);
+    border: 2px solid rgba(147, 112, 219, 0.3);
 }
 
 .social-title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--color-acento);
+    color: var(--color-texto);
     margin-bottom: 1rem;
 }
 
@@ -601,7 +512,7 @@ body {
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    background-color: rgba(160, 32, 240, 0.1);
+    background-color: rgba(147, 112, 219, 0.2);
     border-radius: 10px;
     color: var(--color-texto);
     text-decoration: none;
@@ -610,10 +521,10 @@ body {
 }
 
 .social-link:hover {
-    background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+    background-color: var(--color-primario);
     transform: translateX(10px);
     border-color: var(--color-primario);
-    box-shadow: 0 5px 20px var(--color-sombra);
+    box-shadow: 0 4px 15px var(--color-sombra-hover);
 }
 
 .social-icon {
@@ -625,15 +536,15 @@ body {
    ======================================== */
 
 .footer {
-    background-color: var(--color-fondo-alt);
-    color: var(--color-texto-secundario);
+    background-color: #0F0F1E;
+    color: var(--color-texto);
     padding: 2rem 20px;
     text-align: center;
-    border-top: 1px solid rgba(160, 32, 240, 0.2);
 }
 
 .footer-text {
     font-size: 0.95rem;
+    color: var(--color-texto-secundario);
 }
 
 /* ========================================
@@ -648,22 +559,30 @@ body {
         font-size: 0.9rem;
     }
     
+    /* Logo responsive */
+    .logo-tech {
+        font-size: 1.5rem;
+    }
+    
+    .logo-talent {
+        font-size: 0.75rem;
+    }
+    
+    .logo-oriente {
+        font-size: 0.75rem;
+    }
+    
     /* Hero responsive */
     .hero-title {
         font-size: 2rem;
     }
     
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     
     .hero-description {
         font-size: 1rem;
-    }
-    
-    .profile-image {
-        width: 200px;
-        height: 200px;
     }
     
     /* Títulos de sección */
@@ -691,6 +610,11 @@ body {
         gap: 0.75rem;
     }
     
+    /* Logo móvil */
+    .logo-tech {
+        font-size: 1.3rem;
+    }
+    
     /* Hero móvil */
     .hero {
         padding: 100px 15px 60px;
@@ -701,22 +625,12 @@ body {
     }
     
     .hero-subtitle {
-        font-size: 1rem;
-    }
-    
-    .profile-image {
-        width: 150px;
-        height: 150px;
+        font-size: 1.1rem;
     }
     
     /* Títulos de sección móvil */
     .section-title {
         font-size: 1.75rem;
-    }
-    
-    /* Experiencia móvil */
-    .experience-grid {
-        grid-template-columns: 1fr;
     }
     
     /* Habilidades móvil */

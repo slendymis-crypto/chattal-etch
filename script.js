@@ -1,6 +1,6 @@
 /**
  * ========================================
- * SCRIPT DEL PORTAFOLIO TALENTO TECH
+ * SCRIPT DE TALENTO TECH ORIENTE
  * ========================================
  * Este archivo maneja la interacción del usuario,
  * especialmente el envío del formulario de contacto.
@@ -33,7 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Validar que todos los campos estén completos
             if (nombre && correo && mensaje) {
                 // Mostrar mensaje en la consola del navegador
+                // Este es el mensaje requerido según las instrucciones
                 console.log('Formulario enviado correctamente');
+                
+                // Mostrar mensaje de éxito al usuario (opcional)
+                alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
                 
                 // Limpiar el formulario después del envío
                 contactForm.reset();
@@ -56,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Agregar evento de click a cada enlace
     navLinks.forEach(function(link) {
         link.addEventListener('click', function(event) {
-            // Obtener el destino del enlace (ej: #inicio, #experiencia, etc.)
+            // Obtener el destino del enlace (ej: #inicio, #habilidades, etc.)
             const href = this.getAttribute('href');
             
             // Si el enlace apunta a una sección dentro de la página
@@ -90,11 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Si el scroll es mayor a 50px, cambiar el estilo de la navegación
         if (window.scrollY > 50) {
             navbar.style.backgroundColor = 'rgba(26, 26, 46, 0.98)';
-            navbar.style.boxShadow = '0 4px 20px rgba(160, 32, 240, 0.3)';
+            navbar.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.4)';
         } else {
             // Volver al estilo original
             navbar.style.backgroundColor = 'rgba(26, 26, 46, 0.95)';
-            navbar.style.boxShadow = '0 2px 15px rgba(10, 10, 30, 0.5)';
+            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.3)';
         }
     });
     
@@ -122,8 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
     
-    // Observar las tarjetas de experiencia, habilidades y proyectos
-    const cards = document.querySelectorAll('.experience-card, .skill-item, .project-card');
+    // Observar las tarjetas de habilidades y proyectos
+    const cards = document.querySelectorAll('.skill-card, .project-card');
     cards.forEach(function(card) {
         // Establecer estado inicial
         card.style.opacity = '0';
@@ -140,9 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
      * ========================================
      */
     
-    console.log('%c¡Bienvenido a TALENTO TECH!', 
-                'color: #DDA0DD; font-size: 16px; font-weight: bold;');
-    console.log('%cPrograma de formación en habilidades digitales.', 
-                'color: #A020F0; font-size: 12px;');
+    console.log('%c¡Bienvenido a Talento Tech Oriente!', 
+                'color: #9370DB; font-size: 16px; font-weight: bold;');
+    console.log('%cTu puerta de entrada al futuro digital.', 
+                'color: #DDA0DD; font-size: 12px;');
 });
 
